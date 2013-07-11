@@ -1,5 +1,5 @@
 /*
- * @(#) SoftWeldMembrane.h   1.0   Dec 14, 2011
+ * @(#) SoftWeldMembrane.h   1.0   Dec 02, 2012
  *
  * Jurg Germann (jurg.germann@epfl.ch)
  *
