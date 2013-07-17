@@ -107,10 +107,6 @@ void SoftSimulatorEngine::BeginContact(b2Contact* contact) {
 	// check if both connection mechanism are real
 	if ((connectMechA != 0) && (connectMechB != 0)) {
 
-		// check if connection mechanisms are not of the same type
-		if ((connectMechA->getType() == 3 && connectMechB->getType() == 4)
-				|| (connectMechA->getType() == 4 && connectMechB->getType() == 3)) {
-
 			// check if both connections are NOT PASSIVE
 			if (!(connectMechA->getState() == ConnectionMechanism::PASSIVE
 					|| connectMechB->getState() == ConnectionMechanism::PASSIVE)) {
@@ -134,7 +130,6 @@ void SoftSimulatorEngine::BeginContact(b2Contact* contact) {
 							connectMechB->getNbrContacts() + 1);
 				}
 			}
-		}
 	}
 }
 
@@ -149,10 +144,6 @@ void SoftSimulatorEngine::EndContact(b2Contact* contact) {
 
 	// if both connections are not empty
 	if ((connectMechA != 0) && (connectMechB != 0)) {
-
-		// check type
-		if ((connectMechA->getType() == 3 && connectMechB->getType() == 4)
-				|| (connectMechA->getType() == 4 && connectMechB->getType() == 3)) {
 
 			// check if both connections are NOT PASSIVE
 			if (!(connectMechA->getState() == ConnectionMechanism::PASSIVE
@@ -206,7 +197,6 @@ void SoftSimulatorEngine::EndContact(b2Contact* contact) {
 
 				}
 			}
-		}
 	}
 }
 
