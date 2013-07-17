@@ -20,9 +20,9 @@
 
 #include "../testbed/Render.h"
 #include "../testbed/Test.h"
-#include "SoftElementTest.h"
+#include "RandomWalk.h"
 
-TestEntry g_testEntries[] = { { "SoftElementTest", SoftElementTest::Create }, {
+TestEntry g_testEntries[] = { { "RandomWalk", RandomWalk::Create }, {
 		NULL, NULL }
 
 };

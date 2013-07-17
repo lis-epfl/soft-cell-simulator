@@ -1,33 +1,34 @@
 /*
- * @(#) SoftElementTest.h   1.0   Dec 14, 2011
+ * @(#) RandomWalk.h   1.0   Jun 14, 2013
  *
- * Manuel Stockli (manuel.stockli@epfl.ch)
- * Andrea Maesani (andrea.maesani@epfl.ch)
+ * Jurg Germann (jurg.germann@epfl.ch)
  *
- * Copyright © 2011-2013 Manuel Stockli, Andrea Maesani, Jurg Germann
+ * Copyright © 2011-2013 Laboratory of Intelligent Systems, EPFL
  *
  * This file is part of the Soft Cell Simulator (SCS) software.
  *
- * Soft Cell Simulator (SCS) is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Soft Cell Simulator (SCS) is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Soft Cell Simulator (SCS).  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @(#) $Id$
  */
-#ifndef TESTBED_SOFT_ELEMENT_TEST_H_
-#define TESTBED_SOFT_ELEMENT_TEST_H_
+#ifndef RANDOM_WALK_H_
+#define RANDOM_WALK_H_
 
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
+#include <list>
+
+#include <ostream>
+#include <fstream>
+
+using namespace std;
 
 #include "../testbed/Test.h"
 
@@ -38,13 +39,13 @@
 #define deg2rad 0.0174532925199432957f
 #define rad2deg 57.295779513082320876f
 
-class SoftElementTest: public Test {
+class RandomWalk: public Test {
 
 public:
 
-	SoftElementTest();
+	RandomWalk();
 
-	virtual ~SoftElementTest();
+	virtual ~RandomWalk();
 
 	void Keyboard(unsigned char key);
 
@@ -56,6 +57,14 @@ public:
 
 	void DrawTitle(int x, int y, const char *string);
 
+	void RenderConnections();
+
+	b2Vec2* RandomWalking();
+
+	void CheckOverlap(list<b2Vec2>* elemPos);
+
+	void CreateArena();
+
 private:
 
 	scs::LinearActuatorInternalConnection* intConnect3_;
@@ -66,7 +75,25 @@ private:
 
 	std::vector<scs::SoftElement*> softElements_;
 
+	int numberOfSoftElements_;
+
 	scs::SoftActuatedMembrane* actuatedMembrane_;
+
+	b2Vec2* GetRandPosition();
+
+	// position parameters
+	float center_;
+	float edgeLength_;
+	int radius_;
+
+	// factors
+	float softness_;
+	float amplitude_;
+	float interaction_radius_;
+	float numberOfConnectionMech_;
+
+	// Log to file
+	ofstream myfile_;
 };
 
-#endif /* TESTBED_SOFT_ELEMENT_TEST_H_ */
+#endif /* RANDOM_WALK_H_ */

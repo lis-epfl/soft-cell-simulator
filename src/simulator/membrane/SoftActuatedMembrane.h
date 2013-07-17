@@ -3,7 +3,7 @@
  *
  * Andrea Maesani (andrea.maesani@epfl.ch)
  *
- * Copyright © 2011-2013 Manuel Stockli, Andrea Maesani, Jurg Germann
+ * Copyright © 2011-2013 Laboratory of Intelligent Systems, EPFL
  *
  * This file is part of the Soft Cell Simulator (SCS) software.
  *
