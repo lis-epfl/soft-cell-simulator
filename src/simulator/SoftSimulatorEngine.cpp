@@ -281,3 +281,81 @@ int32 SoftSimulatorEngine::getStepCount() {
 }
 
 }
+
+void SoftSimulatorEngine::moveSoftElements(int softElement, b2Vec2* velocity){
+
+		// get membrane elements
+		std::vector<b2Body*> bodies = softElements_[softElement]->getBodies();
+
+		// get soft element center
+		b2Vec2 elementCenter = softElements_[softElement]->getCenter();
+
+		// apply velocity vector to each element of a membrane
+//		for (unsigned int j = 0; j < bodies.size(); j++)  {
+//			bodies[j]->ApplyForceToCenter(*velocity);
+//		}
+
+		// apply a force to to a random body of a membrane
+		float vx = 0;
+		float vy = 0;
+		int upperLimit = 10;
+		float factor = 0.5;			// speed factor
+
+		// normal distribution
+		vx = rand() % upperLimit - upperLimit/2;
+		vy = rand() % upperLimit - upperLimit/2;
+
+		vx = factor*vx/float(upperLimit-1);
+		vy = factor*vy/float(upperLimit-1);
+
+		b2Vec2* newPos = new b2Vec2(vx, vy);
+
+		float forceToCenterFactor = 0.1;
+
+		float elementCenterDistance = sqrt(elementCenter.x*elementCenter.x + elementCenter.y*elementCenter.y);
+		b2Vec2* forceToCenter = new b2Vec2(-elementCenter.x/elementCenterDistance*forceToCenterFactor, -elementCenter.y/elementCenterDistance*forceToCenterFactor);
+
+
+		unsigned int randomBody = rand() % bodies.size();
+		unsigned int randomBody2 = rand() % bodies.size();
+
+		//		 apply a force to in random direction
+		for(int i=0; i<bodies.size(); i++){
+//			bodies[i]->ApplyForceToCenter(*newPos);
+		}
+
+//		// apply a force to a random membrane body towards the center
+//		for (int i = 0; i < 20; i++){
+//			bodies[randomBody2]->ApplyForceToCenter(*forceToCenter);
+//		}
+
+		// apply a random torque to the element
+		int j = 0;
+//		float torqueFactor = (rand()%100)*0.1;
+		float torqueFactor = (-rand()%100 + 50)*0.2;
+
+		if(softElement %2 == 0){
+			torqueFactor = - torqueFactor;
+		}
+
+		while(j < 2){
+			for (unsigned int i = 0; i < bodies.size(); i++){
+//				bodies[i]->ApplyTorque(torqueFactor);
+				//bodies[i]->ApplyForce(*newPos, bodies[i]->GetWorldPoint(b2Vec2(1,1)));
+			}
+			j++;
+		}
+
+//		// apply a force if element is in tube
+		int y_thres = 60;
+		if (elementCenter.y > y_thres){
+			for(int i=0; i<bodies.size(); i++){
+//				bodies[i]->ApplyForceToCenter(*forceToCenter);
+			}
+
+		}
+
+
+
+
+}
