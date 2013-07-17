@@ -288,13 +288,6 @@ void RandomWalk::StepSimulator(Settings* /*settings*/, float /*timeStep*/) {
 			numberOfConnectionMech_);
 	m_textLine += 15;
 
-	// random walk
-	std::vector<scs::SoftElement*> softElements =
-			this->softSimulator_->getSoftElements();
-	for (unsigned int k = 0; k < softElements.size(); k++) {
-		this->softSimulator_->moveSoftElements(k, RandomWalking());
-	}
-
 }
 
 Test* RandomWalk::Create() {
