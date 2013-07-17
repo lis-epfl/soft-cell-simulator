@@ -72,6 +72,8 @@ public:
 	float getTimestep();
 
 	int32 getStepCount();
+	
+	void moveSoftElements(int softElements, b2Vec2* velocity);
 
 private:
 
